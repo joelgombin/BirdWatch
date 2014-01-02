@@ -49,6 +49,7 @@ object TwitterClient {
   val tweetIteratee = Iteratee.foreach[Array[Byte]] {
     chunk => {
       val chunkString = new String(chunk, "UTF-8")
+      println("\n" + chunkString + "\n")
       supervisor ! TweetReceived
       
       if (chunkString.contains("Easy there, Turbo. Too many requests recently. Enhance your calm.")) {

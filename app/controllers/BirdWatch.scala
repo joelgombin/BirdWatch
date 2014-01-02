@@ -51,8 +51,12 @@ object BirdWatch extends Controller {
   def tweetFeed(q: String) = Action.async { req => {
       Logger.logRequest(req, "/tweetFeed?q=" + q, 200, 0)
 
-      val query = Json.obj("query" -> Json.obj("query_string" -> Json.obj("default_field" -> "text",
+      /**val query = Json.obj("query" -> Json.obj("query_string" -> Json.obj("default_field" -> "text",
           "default_operator" -> "AND", "query" -> ("(" + q + ") AND lang:en"))), 
+        "timestamp" -> dtFormat.print(new DateTime(DateTimeZone.UTC))) */
+
+      val query = Json.obj("query" -> Json.obj("query_string" -> Json.obj("default_field" -> "text",
+          "default_operator" -> "AND", "query" -> ("(" + q + ")"))), 
         "timestamp" -> dtFormat.print(new DateTime(DateTimeZone.UTC)))
 
       /** identify queries by hash, only store unique queries once */

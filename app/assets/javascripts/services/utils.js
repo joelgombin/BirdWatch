@@ -37,7 +37,7 @@ angular.module('birdwatch.services').factory('utils', function () {
             query: {
                 query_string: {
                     default_field: "text",
-                    query: "(" + queryString + ") AND lang:en",
+                    query: "(" + queryString + ")",
                     default_operator: "AND"
                 }
             },
